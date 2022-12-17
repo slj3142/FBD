@@ -1,0 +1,13 @@
+{
+    "person1":
+    {
+        "name":"Jhon",
+        "age":28,
+        "married":false,
+        "data":[1, 2, 3, 4, 5],
+        "car":
+        {
+            "model":"Tesla"
+        }
+    }
+}
