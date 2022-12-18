@@ -1,10 +1,9 @@
 
       PROGRAM MAIN
 
-      IMPLICIT DOUBLE PRECISION (A-H,K,O-Z)
+      USE modParam
 
-      COMMON /PAI/ PI,PI05,PI2
-      COMMON /FILEOUT/ IRAO,IDIF,IRAD
+      IMPLICIT DOUBLE PRECISION (A-H,K,O-Z)
 
       Integer :: nTPlus
       Double Precision :: kStart, kEnd, dk, akb
@@ -89,14 +88,9 @@
 
       SUBROUTINE OFFSET(NB,NT,H0,SIG1,SIG2,OGD,KZZB,IPRINT)
 
+      USE modParam
+      
       IMPLICIT DOUBLE PRECISION (A-H,K,O-Z)
-
-      PARAMETER (MX=105,NP=100,NQ=101)
-
-      COMMON /PAI/ PI,PI05,PI2
-      COMMON /MDT/ CMAS,C22,OG,KZZ,GM
-      COMMON /ELM/ XP(MX),YP(MX),XQ(NQ),YQ(NQ)
-      COMMON /VN2/ VN(3,NP)
 
 
       open(newunit = IOFF, file = "Offset.dat", status = "replace")
@@ -204,13 +198,11 @@
       SUBROUTINE SDSUB(XPI,YPI,NB,SS,DD)
       !Kernel Function: Rankine Source
 
+      USE modParam
+
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
 
-      PARAMETER (MX=105,NQ=101)
-
       DIMENSION SS(NB),DD(NB)
-      
-      COMMON /ELM/ XP(MX),YP(MX),XQ(NQ),YQ(NQ)
       
 
       do J=1,NB
@@ -265,15 +257,12 @@
       SUBROUTINE SDCAL(XPI,YPI,AK,NB,ZS,ZD)
       !Kernel Function: Wave Term
 
+      USE modParam
+
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
       IMPLICIT COMPLEX(kind = 8) (Z)
 
-      PARAMETER (MX=105,NQ=101)
-
       DIMENSION ZS(NB),ZD(NB)
-
-      COMMON /PAI/ PI,PI05,PI2
-      COMMON /ELM/ XP(MX),YP(MX),XQ(NQ),YQ(NQ)
 
 
       Z0=(0.0D0,0.0D0)
@@ -343,18 +332,14 @@
 
       SUBROUTINE SOLVE(NB,NT,AK)
 
+      USE modParam
+
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
       IMPLICIT COMPLEX(kind = 8) (Z)
 
-      PARAMETER (MX=105,NP=100,NQ=101,NEQ=4,SML=1.0D-14)
-
+      PARAMETER (NEQ=4,SML=1.0D-14)
       DIMENSION ZSA(MX,NP),ZSB(MX,NEQ),ZAA(NP,NP),ZBB(NP,NEQ)
       DIMENSION ZS(NP),ZD(NP),SS(NP),DD(NP)
-
-      COMMON /PAI/ PI,PI05,PI2
-      COMMON /ELM/ XP(MX),YP(MX),XQ(NQ),YQ(NQ)
-      COMMON /VN2/ VN(3,NP)
-      COMMON /FAI/ ZFI(4,NP)
 
 
       Z0=(0.0D0,0.0D0)
@@ -435,19 +420,12 @@
 
       SUBROUTINE FORCE(NB,AK,IPRINT)
 
+      USE modParam
+
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
       IMPLICIT COMPLEX(kind = 8) (Z)
 
-      PARAMETER (MX=105,NP=100,NQ=101)
-
       DIMENSION A(3,3),B(3,3),BE(3,3),EAMP(3),EPHA(3)
-
-      COMMON /PAI/ PI,PI05,PI2
-      COMMON /FILEOUT/ IRAO,IDIF,IRAD
-      COMMON /ELM/ XP(MX),YP(MX),XQ(NQ),YQ(NQ)
-      COMMON /VN2/ VN(3,NP)
-      COMMON /FAI/ ZFI(4,NP)
-      COMMON /FCE/ ZAB(3,3),ZEXF(3)
 
 
       Z0=(0.0D0,0.0D0)
@@ -546,17 +524,13 @@
 
       SUBROUTINE MOTION(AK,IPRINT)
 
+      USE modParam
+
       IMPLICIT DOUBLE PRECISION (A-H,K,O-Y)
       IMPLICIT COMPLEX(kind = 8) (Z)
-
+      
       DIMENSION ZAA(3,3),ZBB(3)
       DIMENSION AMPG(3),PHAG(3),ZMTNG(3)
-
-      COMMON /PAI/ PI,PI05,PI2
-      COMMON /FILEOUT/ IRAO,IDIF,IRAD
-      COMMON /MDT/ CMAS,C22,OG,KZZ,GM
-      COMMON /FCE/ ZAB(3,3),ZEXF(3)
-      COMMON /MTN/ ZMTNO(3)
 
 
       SML=1.0D-14
@@ -619,6 +593,8 @@
 !============================================================
 
       SUBROUTINE ZSWEEP(NDIM,N,ZA,ZB,NEQ,EPS)
+
+      USE modParam
 
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)      
       IMPLICIT COMPLEX(kind = 8) (Z)
@@ -697,13 +673,15 @@
   !============================================================
   
       SUBROUTINE EZE1Z(XX,YY,EC,ES)
+
+      USE modParam
   
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
       IMPLICIT COMPLEX(kind = 8) (Z)
       
       DOUBLE PRECISION  NEW
       
-      DATA PI,GAMMA/3.14159265358979D0,0.5772156649015D0/
+      DATA GAMMA/0.5772156649015D0/
       
       
       X =XX
