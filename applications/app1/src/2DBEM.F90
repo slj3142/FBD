@@ -21,10 +21,10 @@
 
       WRITE(6,600) NB,H0,SIG1,SIG2
 
-C     Center of Gravity
+!     Center of Gravity
       OGD =0.05D0
 
-C     Radius of Roll Gyration
+!     Radius of Roll Gyration
       KZZB=0.35D0
 
       write(*,*) "NT plus value:"
@@ -41,12 +41,12 @@ C     Radius of Roll Gyration
       nK     = 300
 
       open(newunit=IRAO,file="MotionRAO.dat",status="replace")
-      write(IRAO,'(a)') "# kB/2 |X2|/A |X3|/A |X4|/(kA)"//
-     &"Phs(X2) Phs(X3) Phs(X4)"
+      write(IRAO,'(a)') "# kB/2 |X2|/A |X3|/A |X4|/(kA)"// &
+      "Phs(X2) Phs(X3) Phs(X4)"
 
       open(newunit=IDIF,file="WaveExtForce.dat",status="replace")
-      write(IRAO,'(a)') "# kB/2 |F2|/A |F3|/A |F4|/(kA)"//
-     &"Phs(F2) Phs(F3) Phs(F4)"
+      write(IRAO,'(a)') "# kB/2 |F2|/A |F3|/A |F4|/(kA)"// &
+      "Phs(F2) Phs(F3) Phs(F4)"
 
       open(newunit=IRAD,file="RadiationForce.dat",status="replace")
       write(IRAD,'(a)') "# nFreq "
@@ -66,16 +66,16 @@ C     Radius of Roll Gyration
 
     9 STOP
 
-  600 FORMAT(//14X,48('*')
-     &   /19X,'2-D RADIATION AND DIFFRACTION PROBLEMS',
-     &   /19X,'    OF A GENERAL-SHAPED 2-D BODY',
-     &   /19X,'     BY INTEGRAL-EQUATION METHOD',/14X,48('*'),
-     &  //15X,'NUMBER OF PANELS OVER THE WHOLE BODY---(NB)=',I4,
-     &   /15X,'HALF-BEAM TO DRAFT RATIO---------H0(=B/2/D)=',F8.4,
-     &   /15X,'SECTIONAL AREA RATIO FOR RIGHT-SIG1(=S/B/D)=',F8.4,
-     &   /15X,'SECTIONAL AREA RATIO FOR LEFT--SIG2(=S/B/D)=',F8.4/)
+  600 FORMAT(//14X,48('*') &
+         /19X,'2-D RADIATION AND DIFFRACTION PROBLEMS', &
+         /19X,'    OF A GENERAL-SHAPED 2-D BODY', &
+         /19X,'     BY INTEGRAL-EQUATION METHOD',/14X,48('*'), &
+        //15X,'NUMBER OF PANELS OVER THE WHOLE BODY---(NB)=',I4, &
+         /15X,'HALF-BEAM TO DRAFT RATIO---------H0(=B/2/D)=',F8.4, &
+         /15X,'SECTIONAL AREA RATIO FOR RIGHT-SIG1(=S/B/D)=',F8.4, &
+         /15X,'SECTIONAL AREA RATIO FOR LEFT--SIG2(=S/B/D)=',F8.4/)
       END
-C============================================================
+!============================================================
       SUBROUTINE OFFSET(NB,NT,H0,SIG1,SIG2,OGD,KZZB,IPRINT)
       IMPLICIT DOUBLE PRECISION (A-H,K,O-Z)
 
@@ -158,20 +158,20 @@ C============================================================
       WRITE(6,610)
       DO 300 J=1,NB+1
   300 WRITE(6,620) J,XQ(J),YQ(J),XP(J),YP(J)
-  600 FORMAT(
-     &    15X,'NONDIMENSIONAL MASS------- S/(B/2)**2=',F8.5,
-     &   /15X,'HEAVE RESTORING FORCE COEFF--AW/(B/2)=',F8.5,
-     &   /15X,'CENTER OF GRAVITY----------------OG/D=',F8.5,
-     &   /15X,'GYRATIONAL RADIUS-----------KZZ/(B/2)=',F8.5,
-     &   /15X,'METACENTRIC HEIGHT-----------GM/(B/2)=',F8.5/)
-  610 FORMAT(/15X,'***** CHECK OF ORDINATES *****'
-     &   /8X,'J',6X,'XQ',8X,'YQ',10X,'XP',8X,'YP')
+  600 FORMAT( &
+          15X,'NONDIMENSIONAL MASS------- S/(B/2)**2=',F8.5, &
+         /15X,'HEAVE RESTORING FORCE COEFF--AW/(B/2)=',F8.5, &
+         /15X,'CENTER OF GRAVITY----------------OG/D=',F8.5, &
+         /15X,'GYRATIONAL RADIUS-----------KZZ/(B/2)=',F8.5, &
+         /15X,'METACENTRIC HEIGHT-----------GM/(B/2)=',F8.5/)
+  610 FORMAT(/15X,'***** CHECK OF ORDINATES *****' &
+         /8X,'J',6X,'XQ',8X,'YQ',10X,'XP',8X,'YP')
   620 FORMAT(7X,I2,1X,2F10.5,2X,2F10.5)
       RETURN
       END
-C============================================================
+!============================================================
       SUBROUTINE SDSUB(XPI,YPI,NB,SS,DD)
-C     Kernel Function: Rankine Source
+!     Kernel Function: Rankine Source
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
 
       PARAMETER (MX=105,NQ=101)
@@ -216,9 +216,9 @@ C     Kernel Function: Rankine Source
   100 CONTINUE
       RETURN
       END
-C============================================================
+!============================================================
       SUBROUTINE SDCAL(XPI,YPI,AK,NB,ZS,ZD)
-C     Kernel Function: Wave Term
+!     Kernel Function: Wave Term
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
       IMPLICIT COMPLEX*16 (Z)
 
@@ -277,7 +277,7 @@ C     Kernel Function: Wave Term
   200 CONTINUE
       RETURN
       END
-C============================================================
+!============================================================
       SUBROUTINE SOLVE(NB,NT,AK)
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
       IMPLICIT COMPLEX*16 (Z)
@@ -336,8 +336,8 @@ C============================================================
 
       CALL ZSWEEP(NP,NB,ZAA,ZBB,NEQ,SML)
       IF(CDABS(ZAA(1,1)).LT.SML) WRITE(6,600)
-  600 FORMAT(//10X,'*** ERROR: ZSWEEP IN SUBROUTINE (SOLVE)',
-     &   ' WAS ABNORMALLY DONE.',/23X,'PLEASE CHECK!'///)
+  600 FORMAT(//10X,'*** ERROR: ZSWEEP IN SUBROUTINE (SOLVE)', &
+         ' WAS ABNORMALLY DONE.',/23X,'PLEASE CHECK!'///)
 
       DO 250 M=1,NEQ
       DO 250 I=1,NB
@@ -345,7 +345,7 @@ C============================================================
   250 CONTINUE
       RETURN
       END
-C============================================================
+!============================================================
       SUBROUTINE FORCE(NB,AK,IPRINT)
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
       IMPLICIT COMPLEX*16 (Z)
@@ -415,19 +415,19 @@ C============================================================
       WRITE(6,640) I,ZEXF(I),EAMP(I),EPHA(I)
   320 CONTINUE
 
-  600 FORMAT(//5X,'++++++++ ADDED-MASS & DAMPING COEFF. ( ',
-     &    'NB=',I3,', K*B/2=',F8.4,' )  +++++++',//10X,
-     &    'I  J',8X,'ADDED-MASS',6X,'DAMPING')
+  600 FORMAT(//5X,'++++++++ ADDED-MASS & DAMPING COEFF. ( ', &
+          'NB=',I3,', K*B/2=',F8.4,' )  +++++++',//10X, &
+          'I  J',8X,'ADDED-MASS',6X,'DAMPING')
   610 FORMAT(8X,'(',I2,',',I2,')',3X,E13.4,3(2X,E13.4))
   615 FORMAT(' ')
   620 FORMAT(8X,'(',I2,',',I2,')',3X,E13.4,2(2X,E13.4))
-  630 FORMAT(//5X,'+++++ WAVE EXCITING FORCE +++++',
-     &  //17X,'PRESSURE INTEGRAL',12X,'AMP',5X,'PHASE(DEG)')
+  630 FORMAT(//5X,'+++++ WAVE EXCITING FORCE +++++', &
+        //17X,'PRESSURE INTEGRAL',12X,'AMP',5X,'PHASE(DEG)')
   640 FORMAT(8X,I2,2E13.4,2X,2E13.4,3X,E11.4,2X,F9.3)
   650 FORMAT(99(1pe15.6))
       RETURN
       END
-C============================================================
+!============================================================
       SUBROUTINE MOTION(AK,IPRINT)
       IMPLICIT DOUBLE PRECISION (A-H,K,O-Y)
       IMPLICIT COMPLEX*16 (Z)
@@ -453,8 +453,8 @@ C============================================================
 
       ZAA(3,1)=-AK*(ZAB(3,1)+OG*ZAB(1,1))
       ZAA(3,2)=-AK*(ZAB(3,2)+OG*ZAB(1,2))
-      ZAA(3,3)=-AK*(CMAS*KZZ**2+ZAB(3,3)+OG*ZAB(1,3)
-     &         +OG*(ZAB(3,1)+OG*ZAB(1,1)))+CMAS*GM
+      ZAA(3,3)=-AK*(CMAS*KZZ**2+ZAB(3,3)+OG*ZAB(1,3) &
+               +OG*(ZAB(3,1)+OG*ZAB(1,1)))+CMAS*GM
       ZBB(3  )= ZEXF(3)+OG*ZEXF(1)
 
       CALL ZSWEEP(3,3,ZAA,ZBB,1,SML)
@@ -477,15 +477,15 @@ C============================================================
 
       IF(IPRINT.EQ.0) RETURN
       WRITE( 6,610) AK,(AMPG(I),PHAG(I),I=1,3)
-  610 FORMAT(//5X,'+++++ MOTIONS ABOUT ''G'' FOR K*B/2=',F7.3,
-     &   '+++++',/21X,'AMP.',7X,'PHASE',/9X,'SWAY  ',E11.4,
-     &   2X,F9.3,' (DEG)' ,/9X, 'HEAVE ',E11.4,2X,F9.3,' (OEG)',
-     &   /9X, 'ROLL  ',E11.4,2X,F9.3,' (DEG)')
+  610 FORMAT(//5X,'+++++ MOTIONS ABOUT ''G'' FOR K*B/2=',F7.3, &
+         '+++++',/21X,'AMP.',7X,'PHASE',/9X,'SWAY  ',E11.4, &
+         2X,F9.3,' (DEG)' ,/9X, 'HEAVE ',E11.4,2X,F9.3,' (OEG)', &
+         /9X, 'ROLL  ',E11.4,2X,F9.3,' (DEG)')
       RETURN
   620 FORMAT(99(1pe15.6))
       END
 
-C============================================================
+!============================================================
       SUBROUTINE ZSWEEP(NDIM,N,ZA,ZB,NEQ,EPS)
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
       IMPLICIT COMPLEX*16 (Z)
@@ -529,7 +529,7 @@ C============================================================
       RETURN
       END
 
-C============================================================
+!============================================================
       SUBROUTINE EZE1Z(XX,YY,EC,ES)
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
       IMPLICIT COMPLEX*16 (Z)
@@ -604,5 +604,5 @@ C============================================================
       RETURN
       END
 
-C============================================================
+!============================================================
 

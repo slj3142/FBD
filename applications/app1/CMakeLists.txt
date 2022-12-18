@@ -3,7 +3,7 @@ SET(ITEM_NAME   "app1")
 
 set(${ITEM_PREFIX}_SRC_${ITEM_NAME}
     ##.... Wrapper Module of EaFort
-    src/2DBEM.for
+    src/2DBEM.F90
 )
 
 ##... Compile
