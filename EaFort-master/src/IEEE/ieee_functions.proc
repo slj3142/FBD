@@ -1,0 +1,9 @@
+Interface IsFinite
+    Procedure :: IsFinite_Real
+    Procedure :: IsFinite_Complex
+End Interface
+
+Interface IsNaN
+    Procedure :: IsNaN_Real
+    Procedure :: IsNaN_Complex
+End Interface

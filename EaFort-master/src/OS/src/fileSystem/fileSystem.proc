@@ -1,0 +1,27 @@
+Interface CreateDir
+    Procedure :: CreateDir
+End Interface
+
+Interface DeleteDir
+    Procedure :: DeleteDir
+End Interface
+
+Interface DeleteFile
+    Procedure :: DeleteFile
+End Interface
+
+Interface CopyDirFile
+    Procedure :: CopyDirFile
+End Interface
+
+Interface RenameDirFile
+    Procedure :: RenameDirFile
+End Interface
+
+Interface IsExistDir
+    Procedure :: IsExistDir
+End Interface
+
+Interface IsExistFile
+    Procedure :: IsExistFile
+End Interface

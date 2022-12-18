@@ -1,0 +1,10 @@
+!!... Solve Linear System Ax = b
+Interface SolveSquareMatrix
+
+    !!... Solve Linear System Ax = b,  Real(8), A should be Square
+    Procedure :: SolveSquareMatrix_Real
+
+    !!... Solve Linear System Ax = b,  Complex(8), A should be Square
+    Procedure :: SolveSquareMatrix_Complex
+
+End Interface

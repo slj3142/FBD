@@ -1,0 +1,34 @@
+{
+    "fruit":
+    {
+        "apple":
+        {
+            "weight":1.5,
+            "diameter":1.2,
+            "isSell":true,
+            "market":"Asia"
+        },
+        "banana":
+        {
+            "length":[1, 5, 3, 5, 2],
+            "weight":[2.0, 5.0, 2.1, 3.2],
+            "isSell":[false, true, false, true],
+            "market":["Asia", "Europe", "US"]
+        }
+    },
+    "animal":
+    {
+        "lion":
+        {
+            "weight":200,
+            "isSell":true,
+            "names":["a", "b", "c", "d"]
+        },
+        "tiger":
+        {
+            "weight":600,
+            "isSell":false,
+            "isDisease":[true, false, true, false]
+        }
+    }
+}

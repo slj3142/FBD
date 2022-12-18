@@ -1,0 +1,58 @@
+!!... Get Parent object
+Interface JSON_GetParent
+    Procedure :: JSON_GetParent
+End Interface
+
+!!... Get Child
+Interface JSON_GetChild
+    Procedure :: JSON_GetChild
+    Procedure :: JSON_GetChildByIndex
+End Interface
+
+!!... Get Child
+Interface JSON_GetChildIfFound
+    Procedure :: JSON_GetChildIfFound
+    Procedure :: JSON_GetChildByIndexIfFound
+End Interface
+
+!!... Get ENUM
+Interface JSON_GetENUM
+    Procedure :: JSON_GetENUM
+End Interface
+
+
+Interface JSON_Get
+
+    !!... Get Integer, Real, Logical, Character, String
+    Procedure :: JSON_GetInt
+    Procedure :: JSON_GetReal
+    Procedure :: JSON_GetLogical
+    Procedure :: JSON_GetChar
+    Procedure :: JSON_GetString
+
+    !!... Get Integer, Real, Logical, Character, String Vector
+    Procedure :: JSON_GetIntVector
+    Procedure :: JSON_GetRealVector
+    Procedure :: JSON_GetLogicalVector
+    Procedure :: JSON_GetCharVector
+    Procedure :: JSON_GetStringVector
+
+End Interface
+
+Interface JSON_GetOrDefault
+
+    !!... GetOrDefault Integer, Real, Logical, Character, String
+    Procedure :: JSON_GetIntOrDefault
+    Procedure :: JSON_GetRealOrDefault
+    Procedure :: JSON_GetLogicalOrDefault
+    Procedure :: JSON_GetCharOrDefault
+    Procedure :: JSON_GetStringOrDefault
+
+    !!... GetOrDefault Integer, Real, Logical, Character, String Vector
+    Procedure :: JSON_GetIntVectorOrDefault
+    Procedure :: JSON_GetRealVectorOrDefault
+    Procedure :: JSON_GetLogicalVectorOrDefault
+    Procedure :: JSON_GetCharVectorOrDefault
+    Procedure :: JSON_GetStringVectorOrDefault
+
+End Interface

@@ -1,0 +1,15 @@
+Interface Hankel1
+    Procedure :: Hankel1_IntReal
+End Interface
+
+Interface Hankel2
+    Procedure :: Hankel2_IntReal
+End Interface
+
+Interface DerivHankel1
+    Procedure :: DerivHankel1_IntReal
+End Interface
+
+Interface DerivHankel2
+    Procedure :: DerivHankel2_IntReal
+End Interface

@@ -1,0 +1,9 @@
+!!
+!!  Binomial Coefficient, Combination, nChoosek
+!!
+!!  (n) = n! / ( k! (n-k)!)
+!!  (k)
+!!
+Interface BinomialCoef
+    Procedure :: BinomialCoef
+End Interface

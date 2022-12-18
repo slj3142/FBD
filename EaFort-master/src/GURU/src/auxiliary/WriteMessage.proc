@@ -1,0 +1,15 @@
+Interface WriteMessage
+    Procedure :: WriteMessage
+End Interface
+
+Interface WritePrefixMessageSingleVector
+    Procedure WritePrefixMessageSingleVector
+End Interface
+
+Interface WritePrefixMessageVectorVector
+    Procedure WritePrefixMessageVectorVector
+End Interface
+
+Interface WritePrefixMessage
+    Procedure :: WritePrefixMessage
+End Interface

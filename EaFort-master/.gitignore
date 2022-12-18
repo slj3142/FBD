@@ -1,0 +1,20 @@
+#... Output files
+*.so
+*.a
+*.o
+*.mod
+*.lib
+*.dll
+
+#... Output Directories
+bin/*
+lib/*
+include/*
+
+#... Build Directories
+build/*
+buildWin/*
+buildLinux/*
+
+#... ThirdParty 
+ThirdParty/lapack*

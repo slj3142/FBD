@@ -1,0 +1,77 @@
+!!... Get values from character
+Interface GetValueFromChar
+    Procedure :: GetIntFromChar
+    Procedure :: GetRealFromChar
+    Procedure :: GetLogicalFromChar
+End Interface
+
+Interface GetIntFromChar
+    Procedure :: GetIntFromChar
+End Interface
+
+Interface GetRealFromChar
+    Procedure :: GetRealFromChar
+End Interface
+
+Interface GetLogicalFromChar
+    Procedure :: GetLogicalFromChar
+End Interface
+
+!!... Get value or default
+Interface GetValueFromCharOrDefault
+    Procedure :: GetIntFromCharOrDefault
+    Procedure :: GetRealFromCharOrDefault
+    Procedure :: GetLogicalFromCharOrDefault
+End Interface
+
+Interface GetIntFromCharOrDefault
+    Procedure :: GetIntFromCharOrDefault
+End Interface
+
+Interface GetRealFromCharOrDefault
+    Procedure :: GetRealFromCharOrDefault
+End Interface
+
+Interface GetLogicalFromCharOrDefault
+    Procedure :: GetLogicalFromCharOrDefault
+End Interface
+
+!!... Get value vector from character
+Private :: GetSeperatedString
+
+Interface GetValueVectorFromChar
+    Procedure :: GetIntVectorFromChar
+    Procedure :: GetRealVectorFromChar
+    Procedure :: GetLogicalVectorFromChar
+End Interface
+
+Interface GetIntVectorFromChar
+    Procedure :: GetIntVectorFromChar
+End Interface
+
+Interface GetRealVectorFromChar
+    Procedure :: GetRealVectorFromChar
+End Interface
+
+Interface GetLogicalVectorFromChar
+    Procedure :: GetLogicalVectorFromChar
+End Interface
+
+!!... Get value vector from character or default
+Interface GetVectorFromCharOrDefault
+    Procedure :: GetIntVectorFromCharOrDefault
+    Procedure :: GetRealVectorFromCharOrDefault
+    Procedure :: GetLogicalVectorFromCharOrDefault
+End Interface
+
+Interface GetIntVectorFromCharOrDefault
+    Procedure :: GetIntVectorFromCharOrDefault
+End Interface
+
+Interface GetRealVectorFromCharOrDefault
+    Procedure :: GetRealVectorFromCharOrDefault
+End Interface
+
+Interface GetLogicalVectorFromCharOrDefault
+    Procedure :: GetLogicalVectorFromCharOrDefault
+End Interface

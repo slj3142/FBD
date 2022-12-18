@@ -1,0 +1,21 @@
+!!... Get Matrix Inverse inv(A)
+Interface InvMat
+
+    !!... Get Inverse Matrix (Real)
+    Procedure :: InvMat_RealSquareMatrix
+
+    !!... Get Inverse Matrix (Complex)
+    Procedure :: InvMat_ComplexSquareMatrix
+
+End Interface
+
+!!... Get Matrix Inverse for 3x3 Matrix
+Interface InvMat3x3
+
+    !!... Get Real Matrix 3x3 (Complex)
+    Procedure :: InvMat3x3_Real
+
+    !!... Get Inverse Matrix 3x3 (Complex)
+    Procedure :: InvMat3x3_Complex
+
+End Interface

@@ -1,0 +1,7 @@
+Interface ZCosh
+    Procedure :: ZCosh
+End Interface
+
+Interface ZSinh
+    Procedure :: ZSinh
+End Interface

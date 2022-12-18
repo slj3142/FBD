@@ -1,0 +1,7 @@
+Interface BesselK
+    Procedure :: BesselK_IntReal
+End Interface
+
+Interface DerivBesselK
+    Procedure :: DerivBesselK_IntReal
+End Interface

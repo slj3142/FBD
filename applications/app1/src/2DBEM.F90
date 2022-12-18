@@ -2,12 +2,18 @@
       PROGRAM MAIN
 
       USE modParam
+      USE pkgEaFort
 
       IMPLICIT DOUBLE PRECISION (A-H,K,O-Z)
 
-      Integer :: nTPlus
       Double Precision :: kStart, kEnd, dk, akb
       Integer :: nK, iK
+
+      Type(typString)                  :: filePath
+      Type(typJSONFile)                :: jsonFile
+      Type(typJSON), pointer           :: json, input
+      Integer :: NB, NTPlus
+      Double Precision :: H0, SIG1, SIG2, OGD, KZZB
 
 
       PI     = 3.14159265358979D0
@@ -16,24 +22,49 @@
       IPRINT = 1
       NPRINT = 0
 
+
+      ! JSON input
+      filePath = "input.json"
+
+      Call JSON_ReadFile( filePath%Chars(), jsonFile, json )
+
+      Call JSON_GetChild( json, "input1", input )
+
+      Call JSON_Print( input )
+
+      Call JSON_GetInt( input, "NB", NB )
+
+      Call JSON_GetReal( input, "H0", H0 )
+
+      Call JSON_GetReal( input, "SIG1", SIG1 )
+
+      Call JSON_GetReal( input, "SIG2", SIG2 )
+
+      Call JSON_GetReal( input, "OGD", OGD )
+
+      Call JSON_GetReal( input, "KZZB", KZZB )
+
+      Call JSON_GetInt( input, "NTPlus", NTPlus )
+
+
       write(6,*) "INPUT NB,H0,SIG1,SIG2: "
 
-      NB = 80
-      H0 = 1.D0
-      SIG1 = 0.8D0
-      SIG2 = 0.8D0
+      ! NB = 80
+      ! H0 = 1.D0
+      ! SIG1 = 0.8D0
+      ! SIG2 = 0.8D0
 
       write(6,600) NB,H0,SIG1,SIG2
 
-      !Center of Gravity
-      OGD =0.05D0
+      ! !Center of Gravity
+      ! OGD =0.05D0
 
-      !Radius of Roll Gyration
-      KZZB=0.35D0
+      ! !Radius of Roll Gyration
+      ! KZZB=0.35D0
 
       write(*,*) "NT plus value:"
-      NTPlus = 3
-      NT     = NB + nTPlus
+      ! NTPlus = 3
+      NT     = NB + NTPlus
 
       !NT=NB+3
       call OFFSET(NB,NT,H0,SIG1,SIG2,OGD,KZZB,NPRINT)

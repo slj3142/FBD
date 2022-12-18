@@ -1,0 +1,29 @@
+!!... Find the key exist
+Interface JSON_IsFound
+    Procedure :: JSON_IsFound
+End Interface
+
+!!... Remove Key
+Interface JSON_Remove
+    Procedure :: JSON_Remove
+End Interface
+
+!!... Get the number of child and name of JSON object ( JSON_GetNChild + JSON_GetName )
+Interface JSON_GetInfo
+    Procedure :: JSON_GetInfo
+End Interface
+
+!!... Get the number of child object
+Interface JSON_GetNChild
+    Procedure :: JSON_GetNChild
+End Interface
+
+!!... Get the name of JSON object
+Interface JSON_GetName
+    Procedure :: JSON_GetName
+End Interface
+
+!!... Rename the JSON object
+Interface JSON_Rename
+    Procedure :: JSON_Rename
+End Interface

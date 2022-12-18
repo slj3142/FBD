@@ -1,0 +1,7 @@
+Interface GetStrFromClass
+    Procedure :: GetStrFromClass
+End Interface
+
+Interface GetStrFromClassVector
+    Procedure :: GetStrFromClassVector
+End Interface GetStrFromClassVector

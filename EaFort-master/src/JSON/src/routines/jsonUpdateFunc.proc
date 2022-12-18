@@ -1,0 +1,12 @@
+Interface JSON_Update
+    Procedure JSON_Update
+    Procedure JSON_UpdateChild
+End Interface
+
+Interface JSON_UpdateChild
+    Procedure JSON_UpdateChild
+End Interface
+
+Interface JSON_UpdateVector
+    Procedure JSON_UpdateVector
+End Interface

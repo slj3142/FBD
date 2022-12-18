@@ -1,0 +1,6 @@
+
+
+Interface Factorial
+    Procedure :: Factorial_Real
+    Procedure :: Factorial_Int
+End Interface

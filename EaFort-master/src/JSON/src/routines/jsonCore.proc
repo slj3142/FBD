@@ -1,0 +1,41 @@
+!!... Destroy JSON
+Interface JSON_InitializeCore
+    Procedure :: JSON_InitializeCore
+End Interface JSON_InitializeCore
+
+!!... Read JSON File
+Interface JSON_ReadFile
+    Procedure :: JSON_ReadFile
+End Interface
+
+!!... Read JSON File or get null JSON pointer
+Interface JSON_ReadFileIfExist
+    Procedure :: JSON_ReadFileIfExist
+End Interface
+
+!!... Close JSON file
+Interface JSON_CloseFile
+    Procedure :: JSON_CloseFile
+End Interface
+
+!!... Print JSON
+Interface JSON_Print
+    Procedure :: JSON_Print
+    Procedure :: JSON_PrintFilePath
+End Interface
+
+!!... Create Object
+Interface JSON_CreateObject
+    Procedure :: JSON_CreateObject
+End Interface JSON_CreateObject
+
+!!... Clone JSON
+Interface JSON_Clone
+    Procedure :: JSON_Clone
+End Interface JSON_Clone
+
+!!... FIXME: Update later
+!!... Destroy JSON (Disable for now. It gives error)
+! Interface JSON_Destroy
+!     Procedure :: JSON_Destroy
+! End Interface JSON_Destroy

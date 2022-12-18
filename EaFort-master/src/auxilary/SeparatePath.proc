@@ -1,0 +1,3 @@
+Interface SeparatePath
+    Procedure :: SeparatePath
+End Interface

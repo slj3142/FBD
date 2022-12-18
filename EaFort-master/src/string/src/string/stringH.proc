@@ -1,0 +1,44 @@
+Interface isStringEqual
+    Procedure :: isStringEqual_CharChar
+    Procedure :: isStringEqual_CharString
+    Procedure :: isStringEqual_StringChar
+    Procedure :: isStringEqual_StringString
+End Interface
+
+!!... Variable 2 Character
+Interface Var2Char
+    Procedure :: Int2Char
+    Procedure :: Int2Char_Vector
+    Procedure :: Real2Char
+    Procedure :: Real2Char_Vector
+    Procedure :: Logical2Char
+    Procedure :: Logical2Char_Vector
+    Procedure :: String2Char
+    Procedure :: String2Char_Vector
+End Interface
+
+!!... Maximum length of single character for conversion
+Integer, PARAMETER :: N_TMP_CHAR_CONV = 100
+
+!!... Integer 2 Character
+Interface Int2Char
+    Procedure :: Int2Char
+    Procedure :: Int2Char_Vector
+End Interface
+
+!!... Real 2 Character
+Interface Real2Char
+    Procedure :: Real2Char
+    Procedure :: Real2Char_Vector
+End Interface
+
+!!... Logical 2 Character
+Interface Logical2Char
+    Procedure :: Logical2Char
+    Procedure :: Logical2Char_Vector
+End Interface
+
+Interface String2Char
+    Procedure :: String2Char
+    Procedure :: String2Char_Vector
+End Interface

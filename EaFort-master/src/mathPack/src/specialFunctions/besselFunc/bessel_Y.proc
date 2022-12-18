@@ -1,0 +1,7 @@
+Interface BesselY
+    Procedure :: BesselY_IntReal
+End Interface
+
+Interface DerivBesselY
+    Procedure :: DerivBesselY_IntReal
+End Interface

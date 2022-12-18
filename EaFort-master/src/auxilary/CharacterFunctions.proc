@@ -1,0 +1,19 @@
+!!... Check character variables is equal
+Interface IsCharEqual
+    Procedure :: IsCharEqual
+End Interface
+
+!!... Upper Char
+Interface UpperChar
+    Procedure :: UpperChar
+End Interface
+
+!!... Lower Char
+Interface LowerChar
+    Procedure :: LowerChar
+End Interface
+
+!!... Remove Back Slash
+Interface RemoveBackSlash
+    Procedure :: RemovebkslChar
+End Interface
