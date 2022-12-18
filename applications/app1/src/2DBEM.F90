@@ -148,7 +148,7 @@
         VN(3,I)=XP(I)*VN(2,I)-YP(I)*VN(1,I)
       enddo
 
-      if(IAD.EQ.0) GOTO 130
+      if(IAD==0) GOTO 130
 
       DS=(XQ(1)-XQ(NB+1))/DFLOAT(IAD+1)
 
@@ -176,7 +176,7 @@
 
       write(6,600) CMAS,C22,OGD,KZZ,GM
 
-      if(IPRINT.EQ.0) RETURN
+      if(IPRINT==0) RETURN
 
       write(6,610)
 
@@ -217,7 +217,7 @@
         SWA=0.0D0
         DWA=0.0D0
 
-        if(DABS(YPI).LT.1.0D-8) GOTO 10
+        if(DABS(YPI)<1.0D-8) GOTO 10
 
         DX=XQ(J+1)-XQ(J)
         DY=YQ(J+1)-YQ(J)
@@ -239,7 +239,7 @@
           ABSC=DABS(COEF)
           WA1=0.5D0*(SUBB*DLOG(XB*XB+YB*YB)-SUBA*DLOG(XA*XA+YA*YA))
 
-          if(ABSC.LT.1.0D-10) THEN
+          if(ABSC<1.0D-10) then
             WA2=0.0D0
             WA3=0.0D0
           else
@@ -266,7 +266,7 @@
       !Kernel Function: Wave Term
 
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
-      IMPLICIT COMPLEX*16 (Z)
+      IMPLICIT COMPLEX(kind = 8) (Z)
 
       PARAMETER (MX=105,NQ=101)
 
@@ -288,7 +288,7 @@
       YY=YPI+YQ(1)
       SGNX=DSIGN(1.0D0,XX)
 
-      if(DABS(XX).LT.1.0D-10) SGNX=0.0D0
+      if(DABS(XX)<1.0D-10) SGNX=0.0D0
 
       XE=-AK*YY
       YE=-AK*DABS(XX)
@@ -306,7 +306,7 @@
         YY=YPI+YQ(J+1)
         SGNX=DSIGN(1.0D0,XX)
 
-        if(DABS(XX).LT.1.0D-10) SGNX=0.0D0
+        if(DABS(XX)<1.0D-10) SGNX=0.0D0
 
         XE=-AK*YY
         YE=-AK*DABS(XX)
@@ -344,7 +344,7 @@
       SUBROUTINE SOLVE(NB,NT,AK)
 
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
-      IMPLICIT COMPLEX*16 (Z)
+      IMPLICIT COMPLEX(kind = 8) (Z)
 
       PARAMETER (MX=105,NP=100,NQ=101,NEQ=4,SML=1.0D-14)
 
@@ -379,7 +379,7 @@
           ZSB(I,M)=Z0
         enddo
 
-        if(I.LE.NB) ZSA(I,I)=DCMPLX(PI,0.0D0)
+        if(I<=NB) ZSA(I,I)=DCMPLX(PI,0.0D0)
       enddo
 
       do I=1,NT
@@ -415,7 +415,7 @@
 
       call ZSWEEP(NP,NB,ZAA,ZBB,NEQ,SML)
 
-      if(CDABS(ZAA(1,1)).LT.SML) write(6,600)
+      if(CDABS(ZAA(1,1))<SML) write(6,600)
 
   600 format(//10X,'*** ERROR: ZSWEEP IN SUBROUTINE (SOLVE)', &
          ' WAS ABNORMALLY DONE.',/23X,'PLEASE CHECK!'///)
@@ -436,7 +436,7 @@
       SUBROUTINE FORCE(NB,AK,IPRINT)
 
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
-      IMPLICIT COMPLEX*16 (Z)
+      IMPLICIT COMPLEX(kind = 8) (Z)
 
       PARAMETER (MX=105,NP=100,NQ=101)
 
@@ -496,7 +496,7 @@
         write(IRAD, 650) ( B(I, J), J = 1, 3)
       end do
 
-      if(IPRINT.EQ.0) RETURN
+      if(IPRINT==0) RETURN
 
       write(6,600) NB,AK
 
@@ -512,7 +512,7 @@
 
       do I=1,3
         do J=1,3
-          if(I.EQ.J) GOTO 310
+          if(I==J) GOTO 310
 
           write(6,610) I,J,A(I,J),B(I,J)
 
@@ -547,7 +547,7 @@
       SUBROUTINE MOTION(AK,IPRINT)
 
       IMPLICIT DOUBLE PRECISION (A-H,K,O-Y)
-      IMPLICIT COMPLEX*16 (Z)
+      IMPLICIT COMPLEX(kind = 8) (Z)
 
       DIMENSION ZAA(3,3),ZBB(3)
       DIMENSION AMPG(3),PHAG(3),ZMTNG(3)
@@ -579,7 +579,7 @@
 
       call ZSWEEP(3,3,ZAA,ZBB,1,SML)
 
-      if(CDABS(ZAA(1,1)).LT.SML) write(6,600)
+      if(CDABS(ZAA(1,1))<SML) write(6,600)
 
   600 format(///10X,'+++ ERROR: ZSWEEP IN (MOTION) +++'///)
 
@@ -594,14 +594,14 @@
       do I=1,3
         AMPG(I)=CDABS(ZMTNG(I))
 
-        if(I.EQ.3) AMPG(I)=AMPG(I)/AK
+        if(I==3) AMPG(I)=AMPG(I)/AK
 
         PHAG(I)=DATAN2(DIMAG(ZMTNG(I)),DREAL(ZMTNG(I)))*180.0D0/PI
       enddo
 
       write(IRAO, 620) AK, ( AMPG(I), I=1, 3), ( PHAG(I), I=1, 3)
 
-      if(IPRINT.EQ.0) RETURN
+      if(IPRINT==0) RETURN
 
       write( 6,610) AK,(AMPG(I),PHAG(I),I=1,3)
 
@@ -621,7 +621,7 @@
       SUBROUTINE ZSWEEP(NDIM,N,ZA,ZB,NEQ,EPS)
 
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)      
-      IMPLICIT COMPLEX*16 (Z)
+      IMPLICIT COMPLEX(kind = 8) (Z)
   
       DIMENSION ZA(NDIM,NDIM), ZB(NDIM,NEQ)
 
@@ -629,7 +629,7 @@
         P=0.0D0
 
         do I=K,N
-          if(P.GE.CDABS(ZA(I,K))) GOTO 1
+          if(P>=CDABS(ZA(I,K))) GOTO 1
 
           P=CDABS(ZA(I,K))
           IP=I
@@ -637,9 +637,9 @@
     1     CONTINUE
         enddo
 
-        if(P.LE.EPS) GOTO 6
+        if(P<=EPS) GOTO 6
 
-        if(IP.EQ.K)  GOTO 7
+        if(IP==K)  GOTO 7
 
         do J=K,N
           ZW=ZA(K,J)
@@ -653,7 +653,7 @@
           ZB(IP,J)=ZW
         enddo
 
-    7   if(K.EQ.N) GOTO 70
+    7   if(K==N) GOTO 70
 
         do J=K+1,N
           ZA(K,J)=ZA(K,J)/ZA(K,K)
@@ -664,9 +664,9 @@
         enddo
 
         do I=1,N
-          if(I.EQ.K) GOTO 5
+          if(I==K) GOTO 5
 
-          if(K.EQ.N) GOTO 40
+          if(K==N) GOTO 40
 
           do J=K+1,N
             ZA(I,J)=ZA(I,J)-ZA(I,K)*ZA(K,J)
@@ -699,7 +699,7 @@
       SUBROUTINE EZE1Z(XX,YY,EC,ES)
   
       IMPLICIT DOUBLE PRECISION (A-H,O-Y)
-      IMPLICIT COMPLEX*16 (Z)
+      IMPLICIT COMPLEX(kind = 8) (Z)
       
       DOUBLE PRECISION  NEW
       
@@ -711,11 +711,11 @@
       R =DSQRT(X*X+Y*Y)
       C =DATAN2(Y,X)
       
-      if(R.GT.25.0D0) GOTO 30
+      if(R>25.0D0) GOTO 30
       
-      if(X.GT.0.0D0.AND.R.GT.8.0D0) GOTO 20
+      if(X>0.0D0.AND.R>8.0D0) GOTO 20
       
-      if(X.LE.0.0D0.AND.Y.GT.10.0D0) GOTO 20
+      if(X<=0.0D0.AND.Y>10.0D0) GOTO 20
       
       ER=-GAMMA-DLOG(R)+R*DCOS(C)
       EI=-C+R*DSIN(C)
@@ -728,15 +728,15 @@
         ER=ER-SB*DCOS(CN)
         EI=EI-SB*DSIN(CN)
       
-        if(N.EQ.100) GOTO 1
+        if(N==100) GOTO 1
       
-        if(EI.EQ.0.0D0) GOTO 10
+        if(EI==0.0D0) GOTO 10
       
-        if(DABS(SB/EI).LE.1.0D-8) GOTO 10
+        if(DABS(SB/EI)<=1.0D-8) GOTO 10
       
         GOTO 100
       
-   10   IF(DABS(SB/ER).LE.1.0D-8) GOTO 1
+   10   if(DABS(SB/ER)<=1.0D-8) GOTO 1
       
   100   CONTINUE
       enddo
@@ -746,7 +746,7 @@
       EC=CC*ER-SS*EI
       ES=CC*EI+SS*ER
       
-      if(YY.LT.0.0D0) ES=-ES
+      if(YY<0.0D0) ES=-ES
       
       RETURN
       
@@ -765,7 +765,7 @@
       EC=DREAL(ZSUB)
       ES=DIMAG(ZSUB)
       
-      if(YY.LT.0.0D0) ES=-ES
+      if(YY<0.0D0) ES=-ES
       
       RETURN
       
@@ -777,17 +777,17 @@
       do N=2,100
         NEW=-OLD/R*DFLOAT(N-1)
       
-        if(EXS.EQ.0.0D0) GOTO 31
+        if(EXS==0.0D0) GOTO 31
       
-        if(DABS(NEW/EXS).LE.1.0D-8) GOTO 31
+        if(DABS(NEW/EXS)<=1.0D-8) GOTO 31
       
         GOTO 32
       
-   31   IF(EXC.EQ.0.0D0) GOTO 32
+   31   if(EXC==0.0D0) GOTO 32
       
-        IF(DABS(NEW/EXC).LE.1.0D-8) GOTO 33
+        if(DABS(NEW/EXC)<=1.0D-8) GOTO 33
       
-   32   IF(DABS(OLD).LT.DABS(NEW)) GOTO 33
+   32   if(DABS(OLD)<DABS(NEW)) GOTO 33
       
         OLD=NEW
         EXC=EXC+OLD*DCOS(C*DFLOAT(N))
@@ -797,9 +797,9 @@
    33 EC=-EXC
       ES=EXS
       
-      if(DABS(PI-DABS(C)).LT.1.0D-10) ES=-PI*DEXP(X)
+      if(DABS(PI-DABS(C))<1.0D-10) ES=-PI*DEXP(X)
     
-      if(YY.LT.0.0D0) ES=-ES
+      if(YY<0.0D0) ES=-ES
       
       RETURN
       
