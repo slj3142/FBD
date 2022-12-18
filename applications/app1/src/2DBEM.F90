@@ -144,11 +144,11 @@
       OG  =OGD/H0
       KZZ =KZZB
          SUM=0.0D0
-	   DO 200 J=1,NB
+       DO 200 J=1,NB
          S1 =YQ(J+1)-YQ(J)
-	   S2 =XQ(J  )*(2.0D0*YQ(J  )+YQ(J+1))
+       S2 =XQ(J  )*(2.0D0*YQ(J  )+YQ(J+1))
          S3 =XQ(J+1)*(2.0D0*YQ(J+1)+YQ(J  ))
-	   SUM=SUM+S1*(S2+S3)
+       SUM=SUM+S1*(S2+S3)
   200    CONTINUE
       OBM=SUM/6.0D0
       GM =(2.0D0/3.0D0-OBM)/CMAS+OG
@@ -183,10 +183,10 @@
       DWA=0.0D0
       IF(DABS(YPI).LT.1.0D-8) GOTO 10
         DX=XQ(J+1)-XQ(J)
-     	  DY=YQ(J+1)-YQ(J)
-    	  D=DSQRT(DX*DX+DY*DY)
-	  CDEL=DX/D
-	  SDEL=DY/D
+           DY=YQ(J+1)-YQ(J)
+          D=DSQRT(DX*DX+DY*DY)
+      CDEL=DX/D
+      SDEL=DY/D
       XA=XPI-XQ(J  )
       XB=XPI-XQ(J+1)
 
@@ -201,12 +201,12 @@
       ABSC=DABS(COEF)
         WA1=0.5D0*(SUBB*DLOG(XB*XB+YB*YB)-SUBA*DLOG(XA*XA+YA*YA))
         IF(ABSC.LT.1.0D-10) THEN
-    	  WA2=0.0D0
-    	  WA3=0.0D0
+          WA2=0.0D0
+          WA3=0.0D0
         ELSE
-	  WA2=ABSC*(DATAN(SUBB/ABSC)-DATAN(SUBA/ABSC))
-	  WA3=WA2/COEF
-	  ENDIF
+      WA2=ABSC*(DATAN(SUBB/ABSC)-DATAN(SUBA/ABSC))
+      WA3=WA2/COEF
+      ENDIF
       SWA=SWA-(WA1+WA2)*SL
       DWA=DWA+ WA3*SL
   200 CONTINUE
@@ -225,7 +225,7 @@
       PARAMETER (MX=105,NQ=101)
       DIMENSION ZS(NB),ZD(NB)
       COMMON /PAI/ PI,PI05,PI2
-    	COMMON /ELM/ XP(MX),YP(MX),XQ(NQ),YQ(NQ)
+        COMMON /ELM/ XP(MX),YP(MX),XQ(NQ),YQ(NQ)
 
       Z0=(0.0D0,0.0D0)
       ZI=(0.0D0,1.0D0)
@@ -239,9 +239,9 @@
       SGNX=DSIGN(1.0D0,XX)
       IF(DABS(XX).LT.1.0D-10) SGNX=0.0D0
         XE=-AK*YY
-    	  YE=-AK*DABS(XX)
-    	  ZETA=DCMPLX(XE,YE)
-    	  CALL EZE1Z(XE,YE,EC,ES)
+          YE=-AK*DABS(XX)
+          ZETA=DCMPLX(XE,YE)
+          CALL EZE1Z(XE,YE,EC,ES)
       RFL1=0.5D0*DLOG(XX**2+YY**2)
       RFT1=DATAN2(YY,XX)
       ZFC1= EC-PI*CDEXP(ZETA)*ZI
@@ -253,9 +253,9 @@
       SGNX=DSIGN(1.0D0,XX)
       IF(DABS(XX).LT.1.0D-10) SGNX=0.0D0
         XE=-AK*YY
-    	  YE=-AK*DABS(XX)
+          YE=-AK*DABS(XX)
         ZETA=DCMPLX(XE,YE)
-    	  CALL EZE1Z(XE,YE,EC,ES)
+          CALL EZE1Z(XE,YE,EC,ES)
       RFL2=0.5D0*DLOG(XX**2+YY**2)
       RFT2=DATAN2(YY,XX)
       ZFC2= EC-PI*CDEXP(ZETA)*ZI
@@ -287,7 +287,7 @@
       DIMENSION ZS(NP),ZD(NP),SS(NP),DD(NP)
 
       COMMON /PAI/ PI,PI05,PI2
-     	COMMON /ELM/ XP(MX),YP(MX),XQ(NQ),YQ(NQ)
+         COMMON /ELM/ XP(MX),YP(MX),XQ(NQ),YQ(NQ)
       COMMON /VN2/ VN(3,NP)
       COMMON /FAI/ ZFI(4,NP)
 
@@ -550,15 +550,15 @@
       EI=-C+R*DSIN(C)
       SB=-R
         DO 100 N=2,100
-	    FN=DFLOAT(N)
-	    CN=C*FN
-	    SB=-SB*R*(FN-1.0D0)/FN/FN
-	    ER=ER-SB*DCOS(CN)
-	    EI=EI-SB*DSIN(CN)
-	    IF(N.EQ.100)  GO TO 1
-	    IF(EI.EQ.0.0D0)  GO TO 10
+        FN=DFLOAT(N)
+        CN=C*FN
+        SB=-SB*R*(FN-1.0D0)/FN/FN
+        ER=ER-SB*DCOS(CN)
+        EI=EI-SB*DSIN(CN)
+        IF(N.EQ.100)  GO TO 1
+        IF(EI.EQ.0.0D0)  GO TO 10
         IF(DABS(SB/EI).LE.1.0D-8) GO TO 10
-	      GO TO 100
+          GO TO 100
    10   IF(DABS(SB/ER).LE.1.0D-8) GO TO 1
   100   CONTINUE
     1 CC=DEXP(X)*DCOS(Y)
@@ -573,7 +573,7 @@
       ZSUB=(10.0D0,0.0D0)
       ZS  =Z+ZSUB/(Z1+ZSUB/Z)
         DO 200 J=1,9
-	      ZSUB=DCMPLX(DFLOAT(10-J),0.0D0)
+          ZSUB=DCMPLX(DFLOAT(10-J),0.0D0)
         ZS  =Z+ZSUB/(Z1+ZSUB/ZS)
   200   CONTINUE
       ZSUB=Z1/ZS
@@ -586,15 +586,15 @@
       EXC=OLD*DCOS(C)
       EXS=OLD*DSIN(C)
         DO 300 N=2,100
-	      NEW=-OLD/R*DFLOAT(N-1)
-	      IF(EXS.EQ.0.0D0) GO TO 31
-	      IF(DABS(NEW/EXS).LE.1.0D-8) GO TO 31
-	      GO TO 32
+          NEW=-OLD/R*DFLOAT(N-1)
+          IF(EXS.EQ.0.0D0) GO TO 31
+          IF(DABS(NEW/EXS).LE.1.0D-8) GO TO 31
+          GO TO 32
    31   IF(EXC.EQ.0.0D0) GO TO 32
         IF(DABS(NEW/EXC).LE.1.0D-8) GO TO 33
    32   IF(DABS(OLD).LT.DABS(NEW))  GO TO 33
         OLD=NEW
-	      EXC=EXC+OLD*DCOS(C*DFLOAT(N))
+          EXC=EXC+OLD*DCOS(C*DFLOAT(N))
         EXS=EXS+OLD*DSIN(C*DFLOAT(N))
   300   CONTINUE
    33 EC=-EXC
