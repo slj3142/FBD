@@ -255,9 +255,9 @@
           SL=-SL
           YA=SL*YPI-YQ(J  )
           YB=SL*YPI-YQ(J+1)
-          SUBA=XA*CDEL+YA*SDEL
-          SUBB=XB*CDEL+YB*SDEL
-          COEF=XA*SDEL-YA*CDEL
+          SUBA=XA*CDEL+YA*SDEL   ! alpha
+          SUBB=XB*CDEL+YB*SDEL   ! alpha - L_i
+          COEF=XA*SDEL-YA*CDEL   ! [beta^2 - alpha^2]^0.5
           ABSC=DABS(COEF)
           WA1=0.5D0*(SUBB*DLOG(XB*XB+YB*YB)-SUBA*DLOG(XA*XA+YA*YA))
 
