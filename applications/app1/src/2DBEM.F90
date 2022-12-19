@@ -6,13 +6,14 @@
 
       IMPLICIT DOUBLE PRECISION (A-H,K,O-Z)
 
+      Integer :: nTPlus
       Double Precision :: kStart, kEnd, dk, akb
       Integer :: nK, iK
 
       Type(typString)                  :: filePath
       Type(typJSONFile)                :: jsonFile
       Type(typJSON), pointer           :: json, input
-      Integer :: NB, NTPlus
+      Integer :: NB
       Double Precision :: H0, SIG1, SIG2, OGD, KZZB
 
 
@@ -44,8 +45,6 @@
 
       Call JSON_GetReal( input, "KZZB", KZZB )
 
-      Call JSON_GetInt( input, "NTPlus", NTPlus )
-
 
       write(6,*) "INPUT NB,H0,SIG1,SIG2: "
 
@@ -63,8 +62,8 @@
       ! KZZB=0.35D0
 
       write(*,*) "NT plus value:"
-      ! NTPlus = 3
-      NT     = NB + NTPlus
+      NTPlus = 3
+      NT     = NB + nTPlus
 
       !NT=NB+3
       call OFFSET(NB,NT,H0,SIG1,SIG2,OGD,KZZB,NPRINT)
